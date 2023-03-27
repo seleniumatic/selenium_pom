@@ -29,8 +29,6 @@ public class LoginTest {
         customProfile.setPreference("dom.disable_beforeunload", true);  
         
         driver = new FirefoxDriver();
-        
-        driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
