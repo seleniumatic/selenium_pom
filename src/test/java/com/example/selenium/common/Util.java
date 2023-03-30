@@ -9,8 +9,12 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Util {
     public static String sendGET(URL url) throws IOException
@@ -66,5 +70,24 @@ public class Util {
         driver.findElement(By.xpath("//a[@class='do-not-sell mat-button mat-button-base mat-stroked-button']")).click();
         driver.findElement(By.xpath("//button[@class='okButton mat-raised-button mat-button-base mat-primary']")).click();
         driver.switchTo().defaultContent();
+    }
+
+    public static WebDriver setupParameters(WebDriver driver) throws IOException
+    {   
+        
+        String browser = System.getProperty("browser", "Firefox");
+
+        if(browser.equals("Firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        }
+        
+        if(browser.equals("Chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }
+
+        return driver;
+
     }
 }

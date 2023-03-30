@@ -4,8 +4,6 @@ import java.time.Duration;
 
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -22,13 +20,7 @@ public class LoginTest {
     @BeforeTest
     public void setUp() throws Exception
     {
-        System.setProperty("webdriver.firefox.driver", ".//driver//geckodriver.exe");
-
-        FirefoxProfile customProfile = new FirefoxProfile();
-
-        customProfile.setPreference("dom.disable_beforeunload", true);  
-        
-        driver = new FirefoxDriver();
+        driver = Util.setupParameters(driver);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
