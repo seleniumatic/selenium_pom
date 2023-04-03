@@ -6,8 +6,6 @@ import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -24,13 +22,7 @@ public class CustomerRegistrationTest {
     @BeforeTest
     public void setUp() throws Exception
     {
-        System.setProperty("webdriver.firefox.driver", ".//driver//geckodriver.exe");
-
-        FirefoxProfile customProfile = new FirefoxProfile();
-
-        customProfile.setPreference("dom.disable_beforeunload", true);  
-        
-        driver = new FirefoxDriver();
+        driver = Util.setupParameters(driver);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
