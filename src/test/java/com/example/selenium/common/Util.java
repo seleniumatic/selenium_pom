@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Util {
     public static String sendGET(URL url) throws IOException
@@ -66,7 +69,9 @@ public class Util {
 
     public static void manageCookieAcceptBanner(WebDriver driver)
     {
-        driver.switchTo().frame("ccpa-consent-notice");
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("ccpa-consent-notice"));
+
         driver.findElement(By.xpath("//a[@class='do-not-sell mat-button mat-button-base mat-stroked-button']")).click();
         driver.findElement(By.xpath("//button[@class='okButton mat-raised-button mat-button-base mat-primary']")).click();
         driver.switchTo().defaultContent();

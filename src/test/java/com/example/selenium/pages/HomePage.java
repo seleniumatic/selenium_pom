@@ -20,9 +20,6 @@ public class HomePage {
     public void logout() throws InterruptedException
     {
         driver.findElement(By.xpath("//a[@href='Logout.php']")).click();
-
-        Thread.sleep(2000);
-
         driver.switchTo().alert().accept();
     }
 }
