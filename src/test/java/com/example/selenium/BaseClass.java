@@ -3,8 +3,9 @@ package com.example.selenium;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 
 import com.example.selenium.common.TestConfig;
 import com.example.selenium.common.Util;
@@ -16,7 +17,7 @@ public class BaseClass {
     static String username = TestConfig.getUsername();
     static String password = TestConfig.getPassword();
 
-    @BeforeTest
+    @BeforeClass
     public void setUp() throws Exception
     {
         driver = Util.setupParameters(driver);
@@ -28,9 +29,9 @@ public class BaseClass {
         Util.manageCookieAcceptBanner(driver);
     }
 
-    @AfterTest
+    @AfterClass
     public void closeBrowser()
     {
-        // driver.quit();
+        driver.quit();
     }
 }

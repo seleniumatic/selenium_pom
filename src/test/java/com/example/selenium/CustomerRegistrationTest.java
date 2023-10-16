@@ -19,7 +19,7 @@ public class CustomerRegistrationTest extends BaseClass {
     {
 
         LoginPage login = new LoginPage(driver);
-        login.logInto("mngr528937", "YgAnYsY");
+        login.logInto(username, password);
 
         driver.findElement(By.xpath("//a[@href='addcustomerpage.php']")).click();
 

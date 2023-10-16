@@ -18,7 +18,7 @@ public class LoginTest extends BaseClass {
 
         HomePage homepage = new HomePage(driver);
 
-        Assert.assertEquals(homepage.getHomePageDashboardUsername(), "Manger Id : mngr528937");
+        Assert.assertEquals(homepage.getHomePageDashboardUsername(), "Manger Id : mngr532946");
 
         homepage.logout();
     }
@@ -27,7 +27,7 @@ public class LoginTest extends BaseClass {
     public void testIncorrectPassword() throws InterruptedException
     {
         LoginPage login = new LoginPage(driver);
-        login.logInto("mgr123", "mgr");
+        login.logInto("incorrect", "login");
     
         Assert.assertEquals(driver.switchTo().alert().getText(), "User or Password is not valid");
         
