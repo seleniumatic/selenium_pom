@@ -86,7 +86,7 @@ public class Util {
             WebDriverManager.firefoxdriver().setup();
 
 
-            URL gridUrl = new URL("http://localhost:4444");
+            URL gridUrl = new URL("http://localhost:4444/wd/hub");
 
             // Configure FirefoxOptions
             FirefoxOptions options = new FirefoxOptions();
