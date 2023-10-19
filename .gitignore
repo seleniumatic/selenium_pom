@@ -1,2 +1,5 @@
 .vscode/settings.json
 **/target/**
+target/test-classes/com/example/selenium/pages/CustomerRegisrationSuccessPage.class
+target/test-classes/com/example/selenium/common/TestConfig.class
+target/test-classes/com/example/selenium/BaseClass.class

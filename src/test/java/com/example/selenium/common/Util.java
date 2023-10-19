@@ -15,7 +15,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -79,20 +80,29 @@ public class Util {
 
     public static WebDriver setupParameters(WebDriver driver) throws IOException
     {   
-        
         String browser = System.getProperty("browser", "Firefox");
 
         if(browser.equals("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+
+
+            URL gridUrl = new URL("http://localhost:4444");
+
+            // Configure FirefoxOptions
+            FirefoxOptions options = new FirefoxOptions();
+
+            // Create a RemoteWebDriver instance
+            driver = new RemoteWebDriver(gridUrl, options);
         }
         
         if(browser.equals("Chrome")) {
-            WebDriverManager.chromedriver().setup();
+            // currently webdrivermanager doesn't support latest Chrome
+            // WebDriverManager.chromedriver().setup(); 
+            System.setProperty("webdriver.chrome.driver", "src\\test\\java\\com\\example\\selenium\\drivers\\chromedriver.exe");
+
             driver = new ChromeDriver();
         }
 
         return driver;
-
     }
 }

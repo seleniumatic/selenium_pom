@@ -63,7 +63,7 @@ public class NewCustomerEntryPage {
         driver.findElement(By.name("sub")).click();
     }
 
-    public void submitCustomer(Customer customer)
+    public void enterCustomerInfo(Customer customer)
     {
         setName(customer.getName());
         setBirthdate(customer.getDOB());
@@ -74,7 +74,6 @@ public class NewCustomerEntryPage {
         setMobilePhone(customer.getMobileNumber());
         setEmail(customer.getEmail());
         setPassword(customer.getPassword());
-        clickSubmit();
     }
 
     public String getPageTitle()
