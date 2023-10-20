@@ -81,12 +81,10 @@ public class Util {
     public static WebDriver setupParameters(WebDriver driver) throws IOException
     {   
         String browser = System.getProperty("browser", "Firefox");
+        URL gridUrl = new URL(System.getProperty("gridUrl", "http://localhost:4444/wd/hub"));
 
         if(browser.equals("Firefox")) {
             //WebDriverManager.firefoxdriver().setup();
-
-
-            URL gridUrl = new URL("http://localhost:4444/wd/hub");
 
             // Configure FirefoxOptions
             FirefoxOptions options = new FirefoxOptions();
