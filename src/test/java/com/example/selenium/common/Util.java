@@ -83,7 +83,7 @@ public class Util {
         String browser = System.getProperty("browser", "Firefox");
 
         if(browser.equals("Firefox")) {
-            WebDriverManager.firefoxdriver().setup();
+            //WebDriverManager.firefoxdriver().setup();
 
 
             URL gridUrl = new URL("http://localhost:4444/wd/hub");
