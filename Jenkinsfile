@@ -5,9 +5,9 @@ node  {
                 def mavenHome = tool name: 'maven-jenkins', type: 'maven'
                 env.PATH = "${mavenHome}/bin:${env.PATH}"
             
-                sh 'while [ -z $(curl -sSL http://docker:4444/wd/hub/status | grep ready | grep true) ]; do sleep 5; done'
+                sh 'while [ -z $(curl -sSL http://docker:4444/wd/hub/status | grep ready | grep true) ]; do echo "Selenium Hub not ready, retry in 5 secs"; sleep 5; done'
             
-                sh 'mvn test -DgridUrl=http://docker:4444/wd/hub'
+                sh 'mvn clean test -DgridUrl=http://docker:4444/wd/hub'
             }
         }
     }
