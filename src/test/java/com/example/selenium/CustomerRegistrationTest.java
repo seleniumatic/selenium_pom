@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.example.selenium.common.Customer;
+import com.example.selenium.common.RetryAnalyzer;
 import com.example.selenium.common.Util;
 import com.example.selenium.pages.NewCustomerEntryPage;
 import com.example.selenium.pages.CustomerRegisrationSuccessPage;
@@ -14,7 +15,7 @@ import com.example.selenium.pages.LoginPage;
 
 public class CustomerRegistrationTest extends BaseClass {
 
-    @Test(priority = 1)
+    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
     public void testCustomerRegisterationHappyPath() throws IOException, InterruptedException
     {
 
@@ -34,7 +35,7 @@ public class CustomerRegistrationTest extends BaseClass {
         Assert.assertTrue(success.getSuccessMessage().contains("Customer Registered Successfully!!!"));
     }
 
-    @Test(priority = 2, dependsOnMethods = {"testCustomerRegisterationHappyPath"})
+    @Test(priority = 2, dependsOnMethods = {"testCustomerRegisterationHappyPath"}, retryAnalyzer = RetryAnalyzer.class)
     public void testCustomerRegisterationEmptyForm() throws IOException
     {
         driver.get("https://demo.guru99.com/V4/manager/addcustomerpage.php");

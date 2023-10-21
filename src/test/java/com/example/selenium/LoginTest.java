@@ -3,11 +3,12 @@ package com.example.selenium;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+import com.example.selenium.common.RetryAnalyzer;
 import com.example.selenium.pages.*;
 
 public class LoginTest extends BaseClass {
 
-    @Test(priority=1)
+    @Test(priority=1, retryAnalyzer = RetryAnalyzer.class)
     public void testLoginHappyPath() throws InterruptedException
     {
         LoginPage login = new LoginPage(driver);
@@ -23,7 +24,7 @@ public class LoginTest extends BaseClass {
         homepage.logout();
     }
 
-    @Test(priority=2)
+    @Test(priority=2, retryAnalyzer = RetryAnalyzer.class)
     public void testIncorrectPassword() throws InterruptedException
     {
         LoginPage login = new LoginPage(driver);
