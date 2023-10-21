@@ -1,10 +1,12 @@
-node {
-    docker.image('selenium/standalone-firefox:latest').withRun('-p 4444:4444 -p 7900:7900 --shm-size="2g"') {
-        stage('Build') {
-            sh 'docker ps'
-        }
-        docker.image('maven:3.9.4-eclipse-temurin-17-alpine').inside('-v $HOME/.m2:/root/.m2') {
-            sh 'mvn test'
+node  {
+    docker.image('selenium/standalone-firefox:117.0').withRun('-p 4444:4444 -p 7900:7900 --shm-size="2g"') { 
+        stage('Test') {        
+            def mavenHome = tool name: 'maven-jenkins', type: 'maven'
+            env.PATH = "${mavenHome}/bin:${env.PATH}"
+            
+            sleep 30
+            
+            sh 'mvn test -DgridUrl=http://docker:4444/wd/hub'
         }
     }
 }
