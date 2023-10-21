@@ -1,8 +1,9 @@
 node  {
+    checkout scm
     try {
     docker.image('selenium/standalone-firefox:latest').withRun('-p 4444:4444 -p 7900:7900 --shm-size="2g"') { 
         stage('Testing') {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_ssh', url: 'git@github.com:seleniumatic/selenium_pom_java.git']])
+                //checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_ssh', url: 'git@github.com:seleniumatic/selenium_pom_java.git']])
 
                 def mavenHome = tool name: 'maven-jenkins', type: 'maven'
                 env.PATH = "${mavenHome}/bin:${env.PATH}"
