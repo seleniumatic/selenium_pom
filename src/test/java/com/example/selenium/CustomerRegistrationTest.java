@@ -16,8 +16,7 @@ import com.example.selenium.pages.LoginPage;
 public class CustomerRegistrationTest extends BaseClass {
 
     @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
-    public void testCustomerRegisterationHappyPath() throws IOException, InterruptedException
-    {
+    public void testCustomerRegisterationHappyPath() throws IOException, InterruptedException {
 
         LoginPage login = new LoginPage(driver);
         login.logInto(username, password);
@@ -36,8 +35,8 @@ public class CustomerRegistrationTest extends BaseClass {
     }
 
     @Test(priority = 2, dependsOnMethods = {"testCustomerRegisterationHappyPath"}, retryAnalyzer = RetryAnalyzer.class)
-    public void testCustomerRegisterationEmptyForm() throws IOException
-    {
+    public void testCustomerRegisterationEmptyForm() throws IOException {
+        
         driver.get("https://demo.guru99.com/V4/manager/addcustomerpage.php");
         NewCustomerEntryPage entryPage = new NewCustomerEntryPage(driver);
         entryPage.clickSubmit();
