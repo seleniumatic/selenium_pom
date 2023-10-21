@@ -5,7 +5,7 @@ node  {
                 def mavenHome = tool name: 'maven-jenkins', type: 'maven'
                 env.PATH = "${mavenHome}/bin:${env.PATH}"
             
-                sleep 30
+                sh 'while [ -z $(curl -sSL http://docker:4444/wd/hub/status | grep ready | grep true) ]; do sleep 2; done'
             
                 sh 'mvn test -DgridUrl=http://docker:4444/wd/hub'
             }
