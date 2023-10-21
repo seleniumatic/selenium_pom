@@ -10,7 +10,7 @@ public class TestConfig {
     private static Properties testConfig = new Properties();
 
     
-    static String testConfigFile = "com/example/selenium/resources/test.config";
+    static String testConfigFile = "test.config";
     static String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     static String testConfigPath = rootPath + testConfigFile;
 
