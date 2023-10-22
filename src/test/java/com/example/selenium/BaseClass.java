@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
@@ -28,7 +27,7 @@ public class BaseClass {
     {
         logger = LogManager.getLogger(this.getClass());
 
-        driver = Util.setupParameters(driver);
+        driver = Util.setUpDriver(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(testUrl);
 
@@ -41,7 +40,7 @@ public class BaseClass {
     }
 
     @BeforeMethod
-    public void afterMethod(ITestResult result) {
+    public void beforeMethod(ITestResult result) {
         testName = result.getMethod().getMethodName();
         logger.info("Running test: {}", testName);
     }

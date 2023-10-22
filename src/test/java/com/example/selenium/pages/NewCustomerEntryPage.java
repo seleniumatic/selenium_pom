@@ -63,14 +63,14 @@ public class NewCustomerEntryPage {
         driver.findElement(By.name("sub")).click();
     }
 
-    public void enterCustomerInfo(Customer customer)
+    public void enterCustomerInfo(CustomerInfo customer)
     {
         setName(customer.getName());
-        setBirthdate(customer.getDOB());
+        setBirthdate(customer.getDob());
         setAddress(customer.getAddress());
         setCity(customer.getCity());
         setState(customer.getState());
-        setPIN(customer.getPIN());
+        setPIN(customer.getPin());
         setMobilePhone(customer.getMobileNumber());
         setEmail(customer.getEmail());
         setPassword(customer.getPassword());

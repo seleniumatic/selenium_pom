@@ -10,19 +10,14 @@ import java.time.Duration;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Util {
-    public static String sendGET(URL url) throws IOException
-    {
+    public static String sendGET(URL url) throws IOException {
+
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
@@ -30,9 +25,11 @@ public class Util {
 
         String inputLine;
         StringBuffer content = new StringBuffer();
+
         while ((inputLine = in.readLine()) != null) {
             content.append(inputLine);
         }
+
         in.close();
 
         return content.toString();
@@ -48,28 +45,28 @@ public class Util {
         return customerJsonNode;
     }
 
-    public static Customer createRandomCustomer() throws IOException
-    {
+    public static CustomerInfo createRandomCustomer() throws IOException {
+
         JsonNode customerJsonNode = getRandomCustomerJsonNode();
         
-        Customer customer = new Customer();
-
-        customer.setName(customerJsonNode.get("first_name").asText() + " " + customerJsonNode.get("last_name").asText());
-        customer.setGender(customerJsonNode.get("gender").asText());
-        customer.setDOB(customerJsonNode.get("date_of_birth").asText());
-        customer.setAddress(customerJsonNode.get("address").get("street_address").asText());
-        customer.setCity(customerJsonNode.get("address").get("city").asText());
-        customer.setState(customerJsonNode.get("address").get("state").asText());
-        customer.setPIN("123456");
-        customer.setMobileNumber(customerJsonNode.get("phone_number").asText().replaceAll("[^0-9]", ""));
-        customer.setEmail(customerJsonNode.get("email").asText());
-        customer.setPassword("password1");
+        CustomerInfo customer = new CustomerInfoBuilder()
+                            .setName(customerJsonNode.get("first_name").asText() + " " + customerJsonNode.get("last_name").asText())
+                            .setGender(customerJsonNode.get("gender").asText())
+                            .setDob(customerJsonNode.get("date_of_birth").asText())
+                            .setAddress(customerJsonNode.get("address").get("street_address").asText())
+                            .setCity(customerJsonNode.get("address").get("city").asText())
+                            .setState(customerJsonNode.get("address").get("state").asText())
+                            .setPin("123456")
+                            .setMobileNumber(customerJsonNode.get("phone_number").asText().replaceAll("[^0-9]", ""))
+                            .setEmail(customerJsonNode.get("email").asText())
+                            .setPassword("password1")
+                            .build();
 
         return customer;
     }
 
-    public static void manageCookieAcceptBanner(WebDriver driver)
-    {
+    public static void manageCookieAcceptBanner(WebDriver driver) {
+
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(3));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("ccpa-consent-notice"));
 
@@ -78,29 +75,11 @@ public class Util {
         driver.switchTo().defaultContent();
     }
 
-    public static WebDriver setupParameters(WebDriver driver) throws IOException
-    {   
+    public static WebDriver setUpDriver(WebDriver driver) throws IOException {
+
         String browser = System.getProperty("browser", "Firefox");
-        URL gridUrl = new URL(System.getProperty("gridUrl", "http://localhost:4444/wd/hub"));
+        String gridUrl = System.getProperty("gridUrl", null);
 
-        if(browser.equals("Firefox")) {
-            //WebDriverManager.firefoxdriver().setup();
-
-            // Configure FirefoxOptions
-            FirefoxOptions options = new FirefoxOptions();
-
-            // Create a RemoteWebDriver instance
-            driver = new RemoteWebDriver(gridUrl, options);
-        }
-        
-        if(browser.equals("Chrome")) {
-            // currently webdrivermanager doesn't support latest Chrome
-            // WebDriverManager.chromedriver().setup(); 
-            System.setProperty("webdriver.chrome.driver", "src\\test\\java\\com\\example\\selenium\\drivers\\chromedriver.exe");
-
-            driver = new ChromeDriver();
-        }
-
-        return driver;
+        return WebDriverFactory.createWebDriver(browser, gridUrl);
     }
 }

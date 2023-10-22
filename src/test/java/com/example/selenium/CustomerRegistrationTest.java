@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import com.example.selenium.common.Customer;
+import com.example.selenium.common.CustomerInfo;
 import com.example.selenium.common.RetryAnalyzer;
 import com.example.selenium.common.Util;
 import com.example.selenium.pages.NewCustomerEntryPage;
@@ -25,7 +25,7 @@ public class CustomerRegistrationTest extends BaseClass {
 
         NewCustomerEntryPage entryPage = new NewCustomerEntryPage(driver);
 
-        Customer customer = Util.createRandomCustomer();
+        CustomerInfo customer = Util.createRandomCustomer();
 
         entryPage.enterCustomerInfo(customer);
         entryPage.clickSubmit();
