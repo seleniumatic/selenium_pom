@@ -22,8 +22,8 @@ public class TestConfig {
         }
     }
 
-    public static String getTestUrl() {
-        return testConfig.getProperty("test.url");
+    public static String getTestBaseUrl() {
+        return testConfig.getProperty("test.base.url");
     }
 
     public static String getUsername() {

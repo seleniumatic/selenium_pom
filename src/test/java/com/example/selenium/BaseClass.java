@@ -18,7 +18,7 @@ public class BaseClass {
     protected String testName;
 
     WebDriver driver;
-    static String testUrl = TestConfig.getTestUrl();
+    static String testBaseUrl = TestConfig.getTestBaseUrl();
     static String username = TestConfig.getUsername();
     static String password = TestConfig.getPassword();
 
@@ -29,7 +29,7 @@ public class BaseClass {
 
         driver = Util.setUpDriver(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        driver.get(testUrl);
+        driver.get(testBaseUrl);
 
         Util.manageCookieAcceptBanner(driver);
     }

@@ -37,7 +37,7 @@ public class CustomerRegistrationTest extends BaseClass {
     @Test(priority = 2, dependsOnMethods = {"testCustomerRegisterationHappyPath"}, retryAnalyzer = RetryAnalyzer.class)
     public void testCustomerRegisterationEmptyForm() throws IOException {
         
-        driver.get("https://demo.guru99.com/V4/manager/addcustomerpage.php");
+        driver.get(testBaseUrl + "/manager/addcustomerpage.php");
         NewCustomerEntryPage entryPage = new NewCustomerEntryPage(driver);
         entryPage.clickSubmit();
         driver.switchTo().alert().accept();
