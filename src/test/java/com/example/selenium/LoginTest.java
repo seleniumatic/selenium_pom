@@ -9,8 +9,7 @@ import com.example.selenium.pages.*;
 public class LoginTest extends BaseClass {
 
     @Test(priority=1, retryAnalyzer = RetryAnalyzer.class)
-    public void testLoginHappyPath() throws InterruptedException
-    {
+    public void testLoginHappyPath() throws InterruptedException {
         LoginPage login = new LoginPage(driver);
 
         Assert.assertTrue(login.getLoginTitle().contains("Guru99 Bank"));
@@ -19,14 +18,13 @@ public class LoginTest extends BaseClass {
 
         HomePage homepage = new HomePage(driver);
 
-        Assert.assertEquals(homepage.getHomePageDashboardUsername(), "Manger Id : mngr532946");
+        Assert.assertEquals(homepage.getHomePageDashboardUsername(), "Manger Id : " + username);
 
         homepage.logout();
     }
 
     @Test(priority=2, retryAnalyzer = RetryAnalyzer.class)
-    public void testIncorrectPassword() throws InterruptedException
-    {
+    public void testIncorrectPassword() throws InterruptedException {
         LoginPage login = new LoginPage(driver);
         login.logInto("incorrect", "login");
     
