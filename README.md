@@ -2,7 +2,6 @@
 selenium automation against a mock bank at demo.guru99.com
 - uses page object design pattern
 - testng test automation framework
-- in Jenkins runs in a container against a Selenium standalone (only work with firefox container currently)
 - maven dependency management and test execution
 - Usage:
     - "mvn test"                                                                 // default run against local Firefox install
