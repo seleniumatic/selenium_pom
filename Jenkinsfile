@@ -18,7 +18,7 @@ node  {
 
                 sh 'while [ -z $(curl -sSL http://docker:4444/wd/hub/status | grep ready | grep true) ]; do echo "Selenium Hub not ready, retry in 5 secs"; sleep 5; done'
             
-                sh 'mvn clean test -Dbrowser=Crhome -DgridUrl=http://docker:4444/wd/hub'
+                sh 'mvn clean test -Dbrowser=Chrome -DgridUrl=http://docker:4444/wd/hub'
             }
         }
     }
