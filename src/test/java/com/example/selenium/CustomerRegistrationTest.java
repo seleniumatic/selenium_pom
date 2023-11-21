@@ -31,6 +31,7 @@ public class CustomerRegistrationTest extends BaseClass {
         entryPage.clickSubmit();
 
         CustomerRegisrationSuccessPage success = new CustomerRegisrationSuccessPage(driver);
+
         Assert.assertTrue(success.getSuccessMessage().contains("Customer Registered Successfully!!!"));
     }
 

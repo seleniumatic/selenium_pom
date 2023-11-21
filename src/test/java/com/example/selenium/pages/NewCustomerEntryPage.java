@@ -21,9 +21,9 @@ public class NewCustomerEntryPage {
 
     public void setBirthdate(String dob)
     {
+        // need to get the browser used because chrome handle date string for the calendar different from firefox
         String browser = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         
-        // calendar in Chrome use different date format than Firefox
         if (browser.equalsIgnoreCase("chrome")) {
             dob = Util.formatDateString(dob, "MM-dd-yyyy");
         }
