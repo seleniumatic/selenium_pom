@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.Duration;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,6 +15,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 
 public class Util {
     public static String sendGET(URL url) throws IOException {
@@ -81,5 +84,14 @@ public class Util {
         String gridUrl = System.getProperty("gridUrl", null);
 
         return WebDriverFactory.createWebDriver(browser, gridUrl);
+    }
+
+    public static String formatDateString(String date, String pattern) {
+        
+        LocalDate localDate = java.time.LocalDate.parse(date);
+
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+       
+        return localDate.format(outputFormatter);
     }
 }

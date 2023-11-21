@@ -20,7 +20,8 @@ public class NewCustomerEntryPage {
 
     public void setBirthdate(String dob)
     {
-        driver.findElement(By.name("dob")).sendKeys(dob);       
+        String formattedDob = Util.formatDateString(dob, "MM-dd-yyyy");
+        driver.findElement(By.name("dob")).sendKeys(formattedDob);       
     }
 
     public void setAddress(String address)
