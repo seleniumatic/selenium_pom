@@ -2,6 +2,7 @@ package com.example.selenium.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.example.selenium.common.*;
 
@@ -20,8 +21,14 @@ public class NewCustomerEntryPage {
 
     public void setBirthdate(String dob)
     {
-        String formattedDob = Util.formatDateString(dob, "MM-dd-yyyy");
-        driver.findElement(By.name("dob")).sendKeys(formattedDob);       
+        String browser = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
+        
+        // calendar in Chrome use different date format than Firefox
+        if (browser.equalsIgnoreCase("chrome")) {
+            dob = Util.formatDateString(dob, "MM-dd-yyyy");
+        }
+
+        driver.findElement(By.name("dob")).sendKeys(dob);       
     }
 
     public void setAddress(String address)

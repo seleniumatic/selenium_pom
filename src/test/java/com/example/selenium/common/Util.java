@@ -90,7 +90,7 @@ public class Util {
         
         LocalDate localDate = java.time.LocalDate.parse(date);
 
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(pattern);
        
         return localDate.format(outputFormatter);
     }
