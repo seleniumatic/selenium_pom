@@ -31,7 +31,7 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(testBaseUrl);
 
-        Util.manageCookieAcceptBanner(driver);
+        //Util.manageCookieAcceptBanner(driver);
     }
 
     @AfterClass
