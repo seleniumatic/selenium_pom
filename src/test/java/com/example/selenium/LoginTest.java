@@ -2,7 +2,6 @@ package com.example.selenium;
 
 import org.testng.annotations.Test;
 import org.testng.Assert;
-
 import com.example.selenium.common.RetryAnalyzer;
 import com.example.selenium.pages.*;
 

@@ -43,29 +43,25 @@ public class Util {
         
         String customerJson = sendGET(url);
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode customerJsonNode = objectMapper.readTree(customerJson);
-
-        return customerJsonNode;
+        return objectMapper.readTree(customerJson);
     }
 
     public static CustomerInfo createRandomCustomer() throws IOException {
 
         JsonNode customerJsonNode = getRandomCustomerJsonNode();
         
-        CustomerInfo customer = new CustomerInfoBuilder()
-                            .setName(customerJsonNode.get("first_name").asText() + " " + customerJsonNode.get("last_name").asText())
-                            .setGender(customerJsonNode.get("gender").asText())
-                            .setDob(customerJsonNode.get("date_of_birth").asText())
-                            .setAddress(customerJsonNode.get("address").get("street_address").asText())
-                            .setCity(customerJsonNode.get("address").get("city").asText())
-                            .setState(customerJsonNode.get("address").get("state").asText())
-                            .setPin("123456")
-                            .setMobileNumber(customerJsonNode.get("phone_number").asText().replaceAll("[^0-9]", ""))
-                            .setEmail(customerJsonNode.get("email").asText())
-                            .setPassword("password1")
-                            .build();
-
-        return customer;
+        return new CustomerInfoBuilder()
+                        .setName(customerJsonNode.get("first_name").asText() + " " + customerJsonNode.get("last_name").asText())
+                        .setGender(customerJsonNode.get("gender").asText())
+                        .setDob(customerJsonNode.get("date_of_birth").asText())
+                        .setAddress(customerJsonNode.get("address").get("street_address").asText())
+                        .setCity(customerJsonNode.get("address").get("city").asText())
+                        .setState(customerJsonNode.get("address").get("state").asText())
+                        .setPin("123456")
+                        .setMobileNumber(customerJsonNode.get("phone_number").asText().replaceAll("[^0-9]", ""))
+                        .setEmail(customerJsonNode.get("email").asText())
+                        .setPassword("password1")
+                        .build();
     }
 
     public static void manageCookieAcceptBanner(WebDriver driver) {
@@ -78,7 +74,7 @@ public class Util {
         driver.switchTo().defaultContent();
     }
 
-    public static WebDriver setUpDriver(WebDriver driver) throws IOException {
+    public static WebDriver setUpDriver() throws IOException {
 
         String browser = System.getProperty("browser", "Firefox");
         String gridUrl = System.getProperty("gridUrl", null);

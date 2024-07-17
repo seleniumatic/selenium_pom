@@ -23,15 +23,12 @@ public class BaseClass {
     static String password = TestConfig.getPassword();
 
     @BeforeClass
-    public void setUp() throws Exception 
-    {
+    public void setUp() throws Exception {
         logger = LogManager.getLogger(this.getClass());
 
-        driver = Util.setUpDriver(driver);
+        driver = Util.setUpDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(testBaseUrl);
-
-        //Util.manageCookieAcceptBanner(driver);
     }
 
     @AfterClass
