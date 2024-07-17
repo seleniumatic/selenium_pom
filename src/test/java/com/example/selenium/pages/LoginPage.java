@@ -1,38 +1,52 @@
 package com.example.selenium.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     WebDriver driver;
 
+    @FindBy(name = "uid")
+    WebElement usernameElement;
+
+    @FindBy(name = "password")
+    WebElement passwordElement;
+
+    @FindBy(name = "btnLogin")
+    WebElement btnLogin;
+
+    @FindBy(className = "barone")
+    WebElement pageTitle;
+
     public LoginPage(WebDriver driver)
     {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void setUserName(String username)
     {
-        driver.findElement(By.name("uid")).sendKeys(username);
+        usernameElement.sendKeys(username);
     }
 
     public void setPassword(String password)
     {
-        driver.findElement(By.name("password")).sendKeys(password);
+        passwordElement.sendKeys(password);
     }
 
     public void clickLogin()
     {
-        driver.findElement(By.name("btnLogin")).click();
-
+        btnLogin.click();
     }
 
     public String getLoginTitle()
     {
-        return    driver.findElement(By.className("barone")).getText();
+        return pageTitle.getText();
     }
     
-    public void logInto(String username, String password) throws InterruptedException
+    public void logInto(String username, String password)
     {
         setUserName(username);
         setPassword(password);
