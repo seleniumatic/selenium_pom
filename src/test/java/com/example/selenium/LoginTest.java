@@ -8,7 +8,7 @@ import com.example.selenium.pages.*;
 public class LoginTest extends BaseClass {
 
     @Test(priority=1, retryAnalyzer = RetryAnalyzer.class)
-    public void testLoginHappyPath() throws InterruptedException {
+    public void testLoginHappyPath() {
         LoginPage login = new LoginPage(driver);
 
         Assert.assertTrue(login.getLoginTitle().contains("Guru99 Bank"));
@@ -23,7 +23,7 @@ public class LoginTest extends BaseClass {
     }
 
     @Test(priority=2, retryAnalyzer = RetryAnalyzer.class)
-    public void testIncorrectPassword() throws InterruptedException {
+    public void testIncorrectPassword() {
         LoginPage login = new LoginPage(driver);
         login.logInto("incorrect", "login");
     

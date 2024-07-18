@@ -20,34 +20,28 @@ public class LoginPage {
     @FindBy(className = "barone")
     WebElement pageTitle;
 
-    public LoginPage(WebDriver driver)
-    {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void setUserName(String username)
-    {
+    public void setUserName(String username) {
         usernameElement.sendKeys(username);
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         passwordElement.sendKeys(password);
     }
 
-    public void clickLogin()
-    {
+    public void clickLogin() {
         btnLogin.click();
     }
 
-    public String getLoginTitle()
-    {
+    public String getLoginTitle() {
         return pageTitle.getText();
     }
     
-    public void logInto(String username, String password)
-    {
+    public void logInto(String username, String password) {
         setUserName(username);
         setPassword(password);
         clickLogin();
